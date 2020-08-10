@@ -1,5 +1,9 @@
 pipeline {
     agent any
+    environment {
+        USER_NAME = "build_user"
+        USER_ID = "12"
+    }
     stages {
         stage("list env vars") {
             steps {
@@ -11,6 +15,8 @@ pipeline {
             steps {
                 echo "BUILD_NUMBER = ${env.BUILD_NUMBER}"
                 sh 'echo BUILD+NUMBER = $BUILD_NUMBER'
+                echo "Current user is ${env.USER_NAME}"
+                echo "Current iser ID is ${env.USER_ID} (type: ${env.USER_ID.class})"
             }
         }
     }
