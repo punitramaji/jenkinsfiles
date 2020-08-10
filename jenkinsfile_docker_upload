@@ -18,5 +18,19 @@ pipeline {
                 }
             }
         }
+        stage('Upload to dockerhub') {
+            steps {
+                script {
+                    docker.withRegistry( '', registryCredentials) {
+                        dockerImage.push()
+                    }
+                }
+            }
+        }
+        stage('clean up') {
+            steps {
+                sh "docker rmi $registry:$BUILD_NUMBER"
+            }
+        }
     }
 }
