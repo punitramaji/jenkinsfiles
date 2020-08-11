@@ -13,7 +13,12 @@ pipeline {
                    sh "ls -l"
                } 
             }
-        }    
+        }
+        stage('print env') {
+            steps {
+                sh "printenv | sort"
+            }
+        }
         stage('read') {
             steps {
                 script {
