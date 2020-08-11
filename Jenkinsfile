@@ -1,28 +1,19 @@
-agent any
+pipeline {
+    agent any
+    environment {
+        EMP_ID = "12"
+    }
     stages {
-        stage('Cloning git') {
+        stage('build') {
             steps {
-                sh "echo clone"
+                sh "echo build"
+                sh "echo $EMP_ID"
             }
         }
-        stage('Build docker image') {
+        stage('compile') {
             steps {
-                script {
-                    sh "echo build"
-                }
-            }
-        }
-        stage('Upload to dockerhub') {
-            steps {
-                script {
-                    sh "echo upload"
-                    }
-                }
-            }
-        }
-        stage('clean up') {
-            steps {
-                sh "echo cleanup"
+                sh "echo compile"
             }
         }
     }
+}
